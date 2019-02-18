@@ -10,6 +10,7 @@
 		034D8CBB221AA757007078F8 /* AttributedString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 034D8CB1221AA757007078F8 /* AttributedString.framework */; };
 		034D8CC0221AA757007078F8 /* AttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D8CBF221AA757007078F8 /* AttributedStringTests.swift */; };
 		034D8CC2221AA757007078F8 /* AttributedString.h in Headers */ = {isa = PBXBuildFile; fileRef = 034D8CB4221AA757007078F8 /* AttributedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		034D8CCC221AA762007078F8 /* AttributedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D8CCB221AA762007078F8 /* AttributedString.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		034D8CBA221AA757007078F8 /* AttributedStringTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttributedStringTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		034D8CBF221AA757007078F8 /* AttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedStringTests.swift; sourceTree = "<group>"; };
 		034D8CC1221AA757007078F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		034D8CCB221AA762007078F8 /* AttributedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedString.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				034D8CB4221AA757007078F8 /* AttributedString.h */,
 				034D8CB5221AA757007078F8 /* Info.plist */,
+				034D8CCB221AA762007078F8 /* AttributedString.swift */,
 			);
 			path = AttributedString;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					034D8CB0221AA757007078F8 = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 					034D8CB9221AA757007078F8 = {
 						CreatedOnToolsVersion = 10.2;
@@ -194,6 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				034D8CCC221AA762007078F8 /* AttributedString.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +346,7 @@
 		034D8CC6221AA757007078F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -357,6 +363,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.indragie.AttributedString;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,6 +372,7 @@
 		034D8CC7221AA757007078F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -389,6 +397,7 @@
 		034D8CC9221AA757007078F8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AttributedStringTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,6 +415,7 @@
 		034D8CCA221AA757007078F8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = AttributedStringTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
