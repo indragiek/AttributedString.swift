@@ -238,7 +238,7 @@ public struct AttributedString: ExpressibleByStringInterpolation {
             self.appendInterpolation(string, .font(font))
         }
         
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         /// Appends a string styled by the specified text style.
         public mutating func appendInterpolation(_ string: AttributedString, _ textStyle: UIFont.TextStyle) {
             self.appendInterpolation(string, .preferredFont(forTextStyle: textStyle))
