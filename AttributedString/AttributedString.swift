@@ -6,21 +6,21 @@
 //  Copyright © 2019 Indragie Karunaratne. All rights reserved.
 //
 
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
+#if os(macOS)
 import AppKit
+#else
+import UIKit
 #endif
 
 /// A wrapper for an `NSAttributedString` that adds typed attributes and
 /// support for constructing attributed strings using string interpolation.
 public struct AttributedString: ExpressibleByStringInterpolation {
-    #if os(iOS)
-    public typealias Color = UIColor
-    public typealias Font = UIFont
-    #elseif os(macOS)
+    #if os(macOS)
     public typealias Color = NSColor
     public typealias Font = NSFont
+    #else
+    public typealias Color = UIColor
+    public typealias Font = UIFont
     #endif
     
     public enum LigatureStyle: Int {
@@ -82,7 +82,7 @@ public struct AttributedString: ExpressibleByStringInterpolation {
         /// If it is not defined (which is the case by default), it is assumed
         /// to be the same as the foreground color otherwise, it describes the
         /// outline color
-        case strokeColor(UIColor)
+        case strokeColor(Color)
         
         /// This value represents the amount to change the stroke width and is
         /// specified as a percentage of the font point size. Specify 0 (the default)
@@ -91,14 +91,16 @@ public struct AttributedString: ExpressibleByStringInterpolation {
         /// example, a typical value for outlined text would be 3.0
         case strokeWidth(Float)
         
+        #if os(iOS) || os(macOS) || os(tvOS)
         /// For more information, see `NSShadow`
         case shadow(NSShadow)
         
-        /// A text effect, such as `.letterpressStyle`
-        case textEffect(NSAttributedString.TextEffectStyle)
-        
         /// For more information, see `NSTextAttachment`
         case attachment(NSTextAttachment)
+        #endif
+        
+        /// A text effect, such as `.letterpressStyle`
+        case textEffect(NSAttributedString.TextEffectStyle)
         
         /// A link to open when the text range is tapped/cicked.
         case link(URL)
@@ -128,8 +130,12 @@ public struct AttributedString: ExpressibleByStringInterpolation {
         
         var keyValuePair: (NSAttributedString.Key, AnyObject) {
             switch self {
+            #if os(iOS) || os(macOS) || os(tvOS)
             case .attachment(let attachment):
                 return (.attachment, attachment)
+            case .shadow(let shadow):
+                return (.shadow, shadow)
+            #endif
             case .backgroundColor(let backgroundColor):
                 return (.backgroundColor, backgroundColor.cgColor)
             case .baselineOffset(let baselineOffset):
@@ -150,8 +156,6 @@ public struct AttributedString: ExpressibleByStringInterpolation {
                 return (.obliqueness, obliqueness as NSNumber)
             case .paragraphStyle(let paragraphStyle):
                 return (.paragraphStyle, paragraphStyle)
-            case .shadow(let shadow):
-                return (.shadow, shadow)
             case .strikethroughColor(let strikethroughColor):
                 return (.strikethroughColor, strikethroughColor.cgColor)
             case .strikethroughStyle(let strikethroughStyle):
