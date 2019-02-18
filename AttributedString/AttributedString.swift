@@ -179,7 +179,7 @@ public struct AttributedString: ExpressibleByStringInterpolation {
     }
     
     fileprivate var _attributedString: NSMutableAttributedString
-    public var attributedString: NSAttributedString {
+    public var nsAttributedString: NSAttributedString {
         return _attributedString
     }
     
@@ -223,8 +223,8 @@ public struct AttributedString: ExpressibleByStringInterpolation {
         }
         
         public mutating func appendInterpolation(_ string: AttributedString, _ attributes: Attribute...) {
-            let range = NSRange(location: self.attributedString.length, length: string.attributedString.length)
-            self.attributedString.append(string.attributedString)
+            let range = NSRange(location: self.attributedString.length, length: string._attributedString.length)
+            self.attributedString.append(string._attributedString)
             self.attributedString.style(withAttributes: attributes, range: range)
         }
         
@@ -344,8 +344,8 @@ public extension NSMutableAttributedString {
 ///   - rhs: The second attributed string.
 /// - Returns: The concatenated attributed string.
 public func +(lhs: AttributedString, rhs: AttributedString) -> AttributedString {
-    let newAttributedString = lhs.attributedString.mutableCopy() as! NSMutableAttributedString
-    newAttributedString.append(rhs.attributedString)
+    let newAttributedString = lhs.nsAttributedString.mutableCopy() as! NSMutableAttributedString
+    newAttributedString.append(rhs.nsAttributedString)
     return AttributedString(noCopy: newAttributedString)
 }
 
