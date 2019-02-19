@@ -44,8 +44,8 @@ class AttributedStringTests: XCTestCase {
         attrString.style(withAttributes: [.color(.red), .underlineColor(.white)])
         var range = NSRange(location: 0, length: 0)
         let attributes = attrString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
+        XCTAssertEqual(AttributedString.Color.white, attributes[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: attrString.length), range)
     }
     
@@ -55,7 +55,7 @@ class AttributedStringTests: XCTestCase {
         attrString.style(withAttributes: [.color(.red)], range: expectedRange)
         var range = NSRange(location: 0, length: 0)
         let attributes = attrString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(expectedRange, range)
     }
     
@@ -66,7 +66,7 @@ class AttributedStringTests: XCTestCase {
         
         var range = NSRange(location: 0, length: 0)
         let attributes = newAttrString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: newAttrString.length), range)
     }
     
@@ -78,8 +78,8 @@ class AttributedStringTests: XCTestCase {
         
         var range = NSRange(location: 0, length: 0)
         let attributes = newAttrString.attributes(at: 6, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
+        XCTAssertEqual(AttributedString.Color.white, attributes[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(expectedRange, range)
     }
     
@@ -89,8 +89,8 @@ class AttributedStringTests: XCTestCase {
         attrString.style(withAttributes: [.color(.red), .underlineColor(.white)])
         var range = NSRange(location: 0, length: 0)
         let attributes = attrString.nsAttributedString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
+        XCTAssertEqual(AttributedString.Color.white, attributes[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: attrString.nsAttributedString.length), range)
     }
     
@@ -99,7 +99,7 @@ class AttributedStringTests: XCTestCase {
         attrString.style(withAttributes: [.color(.red)], range: attrString.string.startIndex..<attrString.string.index(attrString.string.startIndex, offsetBy: 2))
         var range = NSRange(location: 0, length: 0)
         let attributes = attrString.nsAttributedString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: 2), range)
     }
     
@@ -109,7 +109,7 @@ class AttributedStringTests: XCTestCase {
         
         var range = NSRange(location: 0, length: 0)
         let attributes = newAttrString.nsAttributedString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: newAttrString.nsAttributedString.length), range)
     }
     
@@ -119,8 +119,8 @@ class AttributedStringTests: XCTestCase {
         
         var range = NSRange(location: 0, length: 0)
         let attributes = newAttrString.nsAttributedString.attributes(at: 3, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
+        XCTAssertEqual(AttributedString.Color.white, attributes[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 3, length: 3), range)
     }
     
@@ -129,7 +129,7 @@ class AttributedStringTests: XCTestCase {
         
         var range = NSRange(location: 0, length: 0)
         let attributes = attrString.nsAttributedString.attributes(at: 0, effectiveRange: &range)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: 5), range)
     }
     
@@ -178,13 +178,13 @@ class AttributedStringTests: XCTestCase {
         
         var range1 = NSRange(location: 0, length: 0)
         let attributes1 = attrString.nsAttributedString.attributes(at: 0, effectiveRange: &range1)
-        XCTAssertEqual(AttributedString.Color.red.cgColor, attributes1[.foregroundColor] as! CGColor)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes1[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.red, attributes1[.foregroundColor] as! AttributedString.Color)
+        XCTAssertEqual(AttributedString.Color.white, attributes1[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: 5), range1)
         
         var range2 = NSRange(location: 0, length: 0)
         let attributes2 = attrString.nsAttributedString.attributes(at: 6, effectiveRange: &range2)
-        XCTAssertEqual(AttributedString.Color.blue.cgColor, attributes2[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.blue, attributes2[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 6, length: 5), range2)
     }
     
@@ -193,12 +193,12 @@ class AttributedStringTests: XCTestCase {
         
         var range1 = NSRange(location: 0, length: 0)
         let attributes1 = attrString.nsAttributedString.attributes(at: 0, effectiveRange: &range1)
-        XCTAssertEqual(AttributedString.Color.white.cgColor, attributes1[.underlineColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.white, attributes1[.underlineColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 0, length: 6), range1)
         
         var range2 = NSRange(location: 0, length: 0)
         let attributes2 = attrString.nsAttributedString.attributes(at: 6, effectiveRange: &range2)
-        XCTAssertEqual(AttributedString.Color.blue.cgColor, attributes2[.foregroundColor] as! CGColor)
+        XCTAssertEqual(AttributedString.Color.blue, attributes2[.foregroundColor] as! AttributedString.Color)
         XCTAssertEqual(NSRange(location: 6, length: 5), range2)
     }
 }

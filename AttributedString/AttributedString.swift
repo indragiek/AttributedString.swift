@@ -128,7 +128,7 @@ public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Has
         /// always used and specifying a different value is undefined.
         case verticalGlyphForm(VerticalGlyphForm)
         
-        var keyValuePair: (NSAttributedString.Key, AnyObject) {
+        var keyValuePair: (NSAttributedString.Key, Any) {
             switch self {
             #if os(iOS) || os(macOS) || os(tvOS)
             case .attachment(let attachment):
@@ -137,43 +137,43 @@ public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Has
                 return (.shadow, shadow)
             #endif
             case .backgroundColor(let backgroundColor):
-                return (.backgroundColor, backgroundColor.cgColor)
+                return (.backgroundColor, backgroundColor)
             case .baselineOffset(let baselineOffset):
-                return (.baselineOffset, baselineOffset as NSNumber)
+                return (.baselineOffset, baselineOffset)
             case .expansion(let expansion):
-                return (.expansion, expansion as NSNumber)
+                return (.expansion, expansion)
             case .font(let font):
                 return (.font, font)
             case .color(let foregroundColor):
-                return (.foregroundColor, foregroundColor.cgColor)
+                return (.foregroundColor, foregroundColor)
             case .kern(let kern):
-                return (.kern, kern as NSNumber)
+                return (.kern, kern)
             case .ligature(let ligature):
-                return (.ligature, ligature.rawValue as NSNumber)
+                return (.ligature, ligature.rawValue)
             case .link(let link):
                 return (.link, link as NSURL)
             case .obliqueness(let obliqueness):
-                return (.obliqueness, obliqueness as NSNumber)
+                return (.obliqueness, obliqueness)
             case .paragraphStyle(let paragraphStyle):
                 return (.paragraphStyle, paragraphStyle)
             case .strikethroughColor(let strikethroughColor):
-                return (.strikethroughColor, strikethroughColor.cgColor)
+                return (.strikethroughColor, strikethroughColor)
             case .strikethroughStyle(let strikethroughStyle):
-                return (.strikethroughStyle, strikethroughStyle.rawValue as NSNumber)
+                return (.strikethroughStyle, strikethroughStyle.rawValue)
             case .strokeColor(let strokeColor):
-                return (.strokeColor, strokeColor.cgColor)
+                return (.strokeColor, strokeColor)
             case .strokeWidth(let strokeWidth):
-                return (.strokeWidth, strokeWidth as NSNumber)
+                return (.strokeWidth, strokeWidth)
             case .textEffect(let textEffect):
-                return (.textEffect, textEffect.rawValue as NSString)
+                return (.textEffect, textEffect.rawValue)
             case .underlineColor(let underlineColor):
-                return (.underlineColor, underlineColor.cgColor)
+                return (.underlineColor, underlineColor)
             case .underlineStyle(let underlineStyle):
-                return (.underlineStyle, underlineStyle.rawValue as NSNumber)
+                return (.underlineStyle, underlineStyle.rawValue)
             case .verticalGlyphForm(let verticalGlyphForm):
-                return (.verticalGlyphForm, verticalGlyphForm.rawValue as NSNumber)
+                return (.verticalGlyphForm, verticalGlyphForm.rawValue)
             case .writingDirection(let writingDirection):
-                return (.writingDirection, writingDirection.map { $0 as NSNumber } as NSArray)
+                return (.writingDirection, writingDirection)
             }
         }
     }
