@@ -14,7 +14,7 @@ import UIKit
 
 /// A wrapper for an `NSAttributedString` that adds typed attributes and
 /// support for constructing attributed strings using string interpolation.
-public struct AttributedString: ExpressibleByStringInterpolation {
+public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Hashable {
     #if os(macOS)
     public typealias Color = NSColor
     public typealias Font = NSFont
@@ -191,6 +191,32 @@ public struct AttributedString: ExpressibleByStringInterpolation {
         self._attributedString = attributedString
     }
     
+    // MARK: Equatable
+    
+    public static func ==(lhs: AttributedString, rhs: AttributedString) -> Bool {
+        return lhs._attributedString == rhs._attributedString
+    }
+    
+    // MARK: Hashable
+    
+    var hash: Int {
+        return _attributedString.hashValue
+    }
+    
+    // MARK: Operators
+    
+    /// Concatenates two attributed strings.
+    ///
+    /// - Parameters:
+    ///   - lhs: The first attributed string.
+    ///   - rhs: The second attributed string.
+    /// - Returns: The concatenated attributed string.
+    public static func +(lhs: AttributedString, rhs: AttributedString) -> AttributedString {
+        let newAttributedString = lhs.nsAttributedString.mutableCopy() as! NSMutableAttributedString
+        newAttributedString.append(rhs.nsAttributedString)
+        return AttributedString(noCopy: newAttributedString)
+    }
+    
     // MARK: ExpressibleByStringLiteral
     
     public init(stringLiteral value: String) {
@@ -335,18 +361,6 @@ public extension NSMutableAttributedString {
     func style(withAttributes attributes: [AttributedString.Attribute]) {
         style(withAttributes: attributes, range: NSRange(location: 0, length: length))
     }
-}
-
-/// Concatenates two attributed strings.
-///
-/// - Parameters:
-///   - lhs: The first attributed string.
-///   - rhs: The second attributed string.
-/// - Returns: The concatenated attributed string.
-public func +(lhs: AttributedString, rhs: AttributedString) -> AttributedString {
-    let newAttributedString = lhs.nsAttributedString.mutableCopy() as! NSMutableAttributedString
-    newAttributedString.append(rhs.nsAttributedString)
-    return AttributedString(noCopy: newAttributedString)
 }
 
 extension AttributedString {
