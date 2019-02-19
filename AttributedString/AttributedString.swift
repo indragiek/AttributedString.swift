@@ -179,8 +179,15 @@ public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Has
     }
     
     fileprivate var _attributedString: NSMutableAttributedString
+    
+    /// Returns the `NSAttributedString representation.
     public var nsAttributedString: NSAttributedString {
         return _attributedString
+    }
+    
+    /// Returns the `String` representation
+    public var string: String {
+        return _attributedString.string
     }
     
     fileprivate init(attributedString: NSAttributedString) {
