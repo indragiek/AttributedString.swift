@@ -14,7 +14,7 @@ import UIKit
 
 /// A wrapper for an `NSAttributedString` that adds typed attributes and
 /// support for constructing attributed strings using string interpolation.
-public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Hashable {
+public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Hashable, CustomPlaygroundDisplayConvertible, CustomStringConvertible {
     #if os(macOS)
     public typealias Color = NSColor
     public typealias Font = NSFont
@@ -199,8 +199,20 @@ public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Has
     
     // MARK: Hashable
     
-    var hash: Int {
+    public var hash: Int {
         return _attributedString.hashValue
+    }
+    
+    // MARK: CustomPlaygroundDisplayConvertible
+    
+    public var playgroundDescription: Any {
+        return _attributedString
+    }
+    
+    // MARK: CustomStringConvertible
+    
+    public var description: String {
+        return "\(_attributedString)"
     }
     
     // MARK: Operators
