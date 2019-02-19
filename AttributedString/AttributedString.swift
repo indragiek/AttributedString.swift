@@ -151,7 +151,7 @@ public struct AttributedString: ExpressibleByStringInterpolation, Equatable, Has
             case .ligature(let ligature):
                 return (.ligature, ligature.rawValue)
             case .link(let link):
-                return (.link, link as NSURL)
+                return (.link, link)
             case .obliqueness(let obliqueness):
                 return (.obliqueness, obliqueness)
             case .paragraphStyle(let paragraphStyle):
