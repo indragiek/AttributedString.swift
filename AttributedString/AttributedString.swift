@@ -332,7 +332,7 @@ public extension NSAttributedString {
     ///   - attributes: The attributes to apply.
     ///   - range: The range to apply the attributes to.
     /// - Returns: A new attributed string.
-    func styled(byAttributes attributes: [AttributedString.Attribute], range: NSRange) -> NSAttributedString {
+    func styled(withAttributes attributes: [AttributedString.Attribute], range: NSRange) -> NSAttributedString {
         let mutableAttrString = mutableCopy() as! NSMutableAttributedString
         mutableAttrString.style(withAttributes: attributes, range: range)
         return mutableAttrString
@@ -344,8 +344,8 @@ public extension NSAttributedString {
     /// - Parameters:
     ///   - attributes: The attributes to apply.
     /// - Returns: A new attributed string.
-    func styled(byAttributes attributes: [AttributedString.Attribute]) -> NSAttributedString {
-        return styled(byAttributes: attributes, range: NSRange(location: 0, length: length))
+    func styled(withAttributes attributes: [AttributedString.Attribute]) -> NSAttributedString {
+        return styled(withAttributes: attributes, range: NSRange(location: 0, length: length))
     }
 }
 
@@ -402,7 +402,7 @@ extension AttributedString {
     ///   - attributes: The attributes to apply.
     ///   - range: The range to apply the attributes to.
     /// - Returns: A new attributed string.
-    func styled(byAttributes attributes: [AttributedString.Attribute], range: Range<String.Index>) -> AttributedString {
+    func styled(withAttributes attributes: [AttributedString.Attribute], range: Range<String.Index>) -> AttributedString {
         var newAttributedString = AttributedString(attributedString: _attributedString)
         newAttributedString.style(withAttributes: attributes, range: range)
         return newAttributedString
@@ -414,7 +414,7 @@ extension AttributedString {
     /// - Parameters:
     ///   - attributes: The attributes to apply.
     /// - Returns: A new attributed string.
-    func styled(byAttributes attributes: [AttributedString.Attribute]) -> AttributedString {
+    func styled(withAttributes attributes: [AttributedString.Attribute]) -> AttributedString {
         var newAttributedString = AttributedString(attributedString: _attributedString)
         newAttributedString.style(withAttributes: attributes)
         return newAttributedString
